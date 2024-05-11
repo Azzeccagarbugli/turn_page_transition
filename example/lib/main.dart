@@ -17,9 +17,12 @@ class MyApp extends StatelessWidget {
       title: 'TurnPageTransition Example',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        pageTransitionsTheme: const TurnPageTransitionsTheme(
+        pageTransitionsTheme: TurnPageTransitionsTheme(
           overleafColor: Colors.grey,
           animationTransitionPoint: 0.5,
+          linePaint: Paint()
+            ..color = Colors.black
+            ..strokeWidth = 2,
         ),
         primarySwatch: Colors.blue,
       ),

@@ -27,6 +27,9 @@ class HomePage extends StatelessWidget {
                   transitionDuration: const Duration(milliseconds: 300),
                   reverseTransitionDuration: const Duration(milliseconds: 300),
                   builder: (context) => const FirstPage(),
+                  linePaint: Paint()
+                    ..color = Colors.black
+                    ..strokeWidth = 2,
                 ),
               ),
               child: const Text('Try TurnPageTransition!'),
@@ -39,6 +42,9 @@ class HomePage extends StatelessWidget {
                   animationTransitionPoint: animationTransitionPoint,
                   transitionDuration: const Duration(milliseconds: 300),
                   builder: (context) => const PageViewPage(),
+                  linePaint: Paint()
+                    ..color = Colors.black
+                    ..strokeWidth = 2,
                 ),
               ),
               child: const Text("Let's go TurnPageView!"),

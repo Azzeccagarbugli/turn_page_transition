@@ -19,6 +19,7 @@ class TurnPageView extends StatefulWidget {
     this.animationTransitionPoint = defaultAnimationTransitionPoint,
     this.useOnTap = true,
     this.useOnSwipe = true,
+    this.linePaint,
   })  : assert(itemCount > 0),
         assert(0 <= animationTransitionPoint && animationTransitionPoint < 1),
         controller = controller ?? _defaultPageController;
@@ -44,6 +45,9 @@ class TurnPageView extends StatefulWidget {
 
   /// Determines whether the TurnPageView should respond to swipe events to change pages.
   final bool useOnSwipe;
+
+  /// The [Paint] object used to paint the line of the page-turning animation.
+  final Paint? linePaint;
 
   @override
   State<TurnPageView> createState() => _TurnPageViewState();
@@ -75,6 +79,7 @@ class _TurnPageViewState extends State<TurnPageView>
           animation: animation,
           child: page,
           builder: (context, child) => TurnPageAnimation(
+            linePaint: widget.linePaint,
             animation: animation,
             overleafColor: widget.overleafColorBuilder?.call(pageIndex) ??
                 defaultOverleafColor,

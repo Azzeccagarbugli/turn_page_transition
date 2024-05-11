@@ -11,6 +11,7 @@ class TurnPageAnimation extends StatelessWidget {
     this.animationTransitionPoint,
     this.direction = TurnDirection.rightToLeft,
     required this.child,
+    this.linePaint,
   }) {
     final transitionPoint = animationTransitionPoint;
     assert(
@@ -36,6 +37,9 @@ class TurnPageAnimation extends StatelessWidget {
   /// The widget that is displayed with the page-turning animation.
   final Widget child;
 
+  /// The [Paint] object used to paint the line of the page-turning animation.
+  final Paint? linePaint;
+
   @override
   Widget build(BuildContext context) {
     final transitionPoint =
@@ -51,6 +55,7 @@ class TurnPageAnimation extends StatelessWidget {
         color: overleafColor,
         animationTransitionPoint: transitionPoint,
         direction: direction,
+        linePaint: linePaint,
       ),
       child: Align(
         alignment: alignment,
@@ -182,6 +187,7 @@ class _OverleafPainter extends CustomPainter {
     required this.color,
     required this.animationTransitionPoint,
     required this.direction,
+    this.linePaint,
   });
 
   /// The animation that controls the page-turning effect.
@@ -196,6 +202,9 @@ class _OverleafPainter extends CustomPainter {
 
   /// The direction in which the pages are turned.
   final TurnDirection direction;
+
+  /// The [Paint] object used to paint the line of the page-turning animation.
+  final Paint? linePaint;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -307,7 +316,7 @@ class _OverleafPainter extends CustomPainter {
       ..color = color
       ..style = PaintingStyle.fill;
 
-    final linePaint = Paint()
+    final linePaint = this.linePaint ?? Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;

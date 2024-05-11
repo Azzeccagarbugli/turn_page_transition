@@ -23,7 +23,7 @@ class TurnPageTransitionsTheme extends PageTransitionsTheme {
     @Deprecated('Use animationTransitionPoint instead') this.turningPoint,
     this.animationTransitionPoint,
     this.direction = TurnDirection.rightToLeft,
-    this.linePaint,
+    required this.linePaint,
   });
 
   /// The color of page backsides
@@ -43,7 +43,7 @@ class TurnPageTransitionsTheme extends PageTransitionsTheme {
   final TurnDirection direction;
 
   /// The [Paint] object used to paint the line of the page-turning animation.
-  final Paint? linePaint;
+  final Paint linePaint;
 
   PageTransitionsBuilder get _builder => TurnPageTransitionsBuilder(
         overleafColor: overleafColor,

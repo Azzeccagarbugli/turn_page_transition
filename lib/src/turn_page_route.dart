@@ -31,7 +31,7 @@ class TurnPageRoute<T> extends PageRoute<T> {
     this.barrierLabel,
     this.maintainState = true,
     bool fullscreenDialog = false,
-    this.linePaint,
+    required this.linePaint,
   });
 
   /// The builder function to create the target widget.
@@ -52,7 +52,7 @@ class TurnPageRoute<T> extends PageRoute<T> {
   final TurnDirection direction;
 
   /// The [Paint] object used to paint the line of the page-turning animation.
-  final Paint? linePaint;
+  final Paint linePaint;
 
   @override
   final Duration transitionDuration;

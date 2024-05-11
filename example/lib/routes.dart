@@ -40,6 +40,9 @@ class Routes {
               overleafColor: Colors.blueAccent,
               animationTransitionPoint: 0.5,
               direction: TurnDirection.rightToLeft,
+              linePaint: Paint()
+                ..color = Colors.black
+                ..strokeWidth = 2,
               child: child,
             ),
           ),

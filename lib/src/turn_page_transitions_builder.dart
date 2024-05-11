@@ -8,7 +8,7 @@ class TurnPageTransitionsBuilder extends PageTransitionsBuilder {
     @Deprecated('Use animationTransitionPoint instead') this.turningPoint,
     this.animationTransitionPoint,
     this.direction = TurnDirection.rightToLeft,
-    this.linePaint,
+    required this.linePaint,
   });
 
   final Color overleafColor;
@@ -26,7 +26,7 @@ class TurnPageTransitionsBuilder extends PageTransitionsBuilder {
   final TurnDirection direction;
 
   /// The [Paint] object used to paint the line of the page-turning animation.
-  final Paint? linePaint;
+  final Paint linePaint;
 
   @override
   Widget buildTransitions<T>(
