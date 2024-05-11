@@ -8,12 +8,12 @@ class TurnPageTransition extends StatelessWidget {
     super.key,
     required this.animation,
     required this.overleafColor,
-    @Deprecated('Use animationTransitionPoint instead') this.turningPoint,
     this.animationTransitionPoint,
     this.direction = TurnDirection.rightToLeft,
     required this.child,
+    this.linePaint,
   }) {
-    final transitionPoint = animationTransitionPoint ?? turningPoint;
+    final transitionPoint = animationTransitionPoint;
     assert(
       transitionPoint == null || 0 <= transitionPoint && transitionPoint < 1,
       'animationTransitionPoint must be 0 <= animationTransitionPoint < 1',
@@ -27,11 +27,6 @@ class TurnPageTransition extends StatelessWidget {
   /// Default color is [Colors.grey].
   final Color overleafColor;
 
-  /// The point at which the page-turning animation behavior changes.
-  /// This value must be between 0 and 1 (0 <= turningPoint < 1).
-  @Deprecated('Use animationTransitionPoint instead')
-  final double? turningPoint;
-
   /// The point that behavior of the turn-page-animation changes.
   /// This value must be 0 <= animationTransitionPoint < 1.
   final double? animationTransitionPoint;
@@ -42,11 +37,13 @@ class TurnPageTransition extends StatelessWidget {
   /// The widget that is displayed with the page-turning animation.
   final Widget child;
 
+  /// The [Paint] object used to paint the line of the page-turning animation.
+  final Paint? linePaint;
+
   @override
   Widget build(BuildContext context) {
-    final transitionPoint = this.animationTransitionPoint ??
-        this.turningPoint ??
-        defaultAnimationTransitionPoint;
+    final transitionPoint =
+        this.animationTransitionPoint ?? defaultAnimationTransitionPoint;
 
     final alignment = direction == TurnDirection.rightToLeft
         ? Alignment.centerRight
@@ -58,6 +55,7 @@ class TurnPageTransition extends StatelessWidget {
         color: overleafColor,
         animationTransitionPoint: transitionPoint,
         direction: direction,
+        linePaint: linePaint,
       ),
       child: Align(
         alignment: alignment,
@@ -181,6 +179,7 @@ class _OverleafPainter extends CustomPainter {
     required this.color,
     required this.animationTransitionPoint,
     required this.direction,
+    this.linePaint,
   });
 
   /// The animation that controls the page-turning effect.
@@ -195,6 +194,9 @@ class _OverleafPainter extends CustomPainter {
 
   /// The direction in which the pages are turned.
   final TurnDirection direction;
+
+  /// The [Paint] object used to paint the line of the page-turning animation.
+  final Paint? linePaint;
 
   /// Paints the backside of the pages on the canvas based on the animation progress and direction.
   @override
@@ -307,10 +309,10 @@ class _OverleafPainter extends CustomPainter {
       ..color = color
       ..style = PaintingStyle.fill;
 
-    final linePaint = Paint()
+    final linePaint = this.linePaint ?? Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+      ..strokeWidth = 1.0;
 
     canvas
       ..drawPath(path, fillPaint)

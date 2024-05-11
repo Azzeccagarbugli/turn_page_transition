@@ -9,9 +9,9 @@ class ChiraPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: color,
-      body: Center(
+      body: const Center(
         child: Row(
-          children: const [
+          children: [
             Text(
               "ω・。) ﾁﾗｯ",
               style: TextStyle(
